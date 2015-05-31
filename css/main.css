@@ -6,7 +6,7 @@ body {
 .read-more {
     margin-bottom: 10px;
 }
-.read-more-link {
+.read-more__link {
     font-weight: bold;
     cursor: pointer;
 }
