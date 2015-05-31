@@ -2,29 +2,28 @@
 This is a simple jQuery plugin that provides the read more functionality.
 
 ## Installation
-To use the plugin you need to put the following line in your HTML:
+Include the plugin in your html page. You need to put the following line in your HTML:
 
 ```html
-    <script src="/path/to/your/scipts/folder/jreadmore.min.js"></script>
+    <script src="path/to/your/scipts/folder/jreadmore.min.js"></script>
 ```
 
-If you want, you can load the script conditionally. For example only if there is a corresponding class that needs to be collapsed. In that case you can use the following code in a script and load it instead of the original:
-
-```javascript
-var element = $('.read-more');
-
-if( element.length > 0 ) {
-    $('body').append('<script src="js/read-more.js"></script>');
-}
-```
-
-
-```html
-    <script src="/path/to/your/scipts/folder/main.js"></script>
-```
 ## Usage
-Just put the class `read-more` to any element that you want to have the read more functionality.
+To implement the read more functionality to any element, just put the following in a script tag, for the corresponding element.
+```html
+<script>
+    $('.read-more').readMore();
+</script>
+```
 
+If you like you can change some of the default options like this:
+```html
+<script>
+    $('.read-more').readMore({
+        readMoreHeight: 90
+    });
+</script>
+```
 ### Options
 * `readMoreText: "Read more"` The text to display for collapsed state
 * `readLessText: "Read less"` The text to display for expanded state
