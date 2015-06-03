@@ -6,7 +6,7 @@
 		var defaults = {
 			readMoreText: "Read more",
 			readLessText: "Read less",
-			readMoreHeight: 75
+			readMoreHeight: 150
 		};
 
 		// Merge deafults into options
@@ -20,15 +20,21 @@
 			element.each( function() {
 
 				// 1. Get the options for the specific element
-				options.readMoreHeight = $( this ).data( "options" );
-				console.log( options.readMoreHeight );
+				var elementHeight = $( this ).data( "options" );
 
-				// 2. Create the read-more link
+                // 2. Set which options to use
+				if ( typeof elementHeight !== "undefined" ) {
+                    var collapsedHeight = elementHeight;
+				} else {
+                    var collapsedHeight = options.readMoreHeight;
+				};
+
+				// 3. Create the read-more link
 				$( this ).after( '<span class="read-more__link">' + options.readMoreText +'</span>' );
 
-				// 3. Set the initial state of the read more element to be collapsed
+				// 4. Set the initial state of the read more element to be collapsed
 				$( this ).css({
-					"height": options.readMoreHeight,
+					"height": collapsedHeight,
 					"overflow": "hidden"
 					});
 			})
