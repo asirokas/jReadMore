@@ -4,6 +4,7 @@
 
 		// 0. Options
 		var defaults = {
+			readMoreLinkClass: "read-more__link",
 			readMoreText: "Read more",
 			readLessText: "Read less",
 			readMoreHeight: 150
@@ -14,8 +15,11 @@
 
 		obj = $( this );
 
+		/** Create the read more link for each element selected.
+		 *
+		 *  @param {$object} element - An array of elements.
+		 */
 		function addReadMoreElement(element) {
-			// TODO: If there aren't any options set, use the defaults
 
 			element.each( function() {
 
@@ -30,22 +34,21 @@
 				};
 
 				// 3. Create the read-more link
-				$( this ).after( '<span class="read-more__link">' + options.readMoreText +'</span>' );
-
+				$( this ).after( '<span>' + options.readMoreText +'</span>' )
+						 .next().addClass( options.readMoreLinkClass );
 				// 4. Set the initial state of the read more element to be collapsed
 				$( this ).css({
 					"height": collapsedHeight,
 					"overflow": "hidden"
 					});
 			})
-
 		}
 
 		addReadMoreElement(obj);
 
 		// 4. Action on clicking the read-more link
 		$( ".read-more__link" ).click(function() {
-			console.log( $( this ).text() );
+
 		    // Expand or collapse the "more" text
 			if ( $( this ).prev().css( "overflow" ) == "hidden" ) {
 				$( this ).prev().css({
@@ -53,6 +56,8 @@
 					"overflow": "auto"
 					});
 			} else {
+				// TODO If the element has a data options use this instead of options.readMoreHeight.
+				// Make a function for getting the data options and decide (return) what to use e.g. function hasData(element)
 				$( this ).prev().css({
 					"height": options.readMoreHeight,
 					"overflow": "hidden"
