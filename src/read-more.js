@@ -23,20 +23,20 @@
 
 			element.each( function() {
 
-				// 1. Get the options for the specific element
+				// Get the options for the specific element
 				var elementHeight = $( this ).data( "options" );
 
-                // 2. Set which options to use
+                // Set which options to use
 				if ( typeof elementHeight !== "undefined" ) {
                     var collapsedHeight = elementHeight;
 				} else {
                     var collapsedHeight = options.readMoreHeight;
 				};
 
-				// 3. Create the read-more link
+				// Create the read-more link
 				$( this ).after( '<span>' + options.readMoreText +'</span>' )
 						 .next().addClass( options.readMoreLinkClass );
-				// 4. Set the initial state of the read more element to be collapsed
+				// Set the initial state of the read more element to be collapsed
 				$( this ).css({
 					"height": collapsedHeight,
 					"overflow": "hidden"
@@ -44,10 +44,24 @@
 			})
 		}
 
+		/** Get the options of the selected element.
+		*
+		*  @param {object} refElement - An array of elements.
+		*/
+		function getRefElementOptions(refElement) {
+
+			if ( typeof refElement.data( "options" ) !== "undefined" ) {
+				this.collapsedHeight = refElement.data( "options" );
+			} else {
+				this.collapsedHeight = options.readMoreHeight;
+			}
+
+		}
+
 		addReadMoreElement(obj);
 
 		// 4. Action on clicking the read-more link
-		$( ".read-more__link" ).click(function() {
+		$( "." + options.readMoreLinkClass ).click(function() {
 
 		    // Expand or collapse the "more" text
 			if ( $( this ).prev().css( "overflow" ) == "hidden" ) {
@@ -56,10 +70,11 @@
 					"overflow": "auto"
 					});
 			} else {
-				// TODO If the element has a data options use this instead of options.readMoreHeight.
-				// Make a function for getting the data options and decide (return) what to use e.g. function hasData(element)
+
+				var refElementOptions = new getRefElementOptions( ( $( this ).prev() ) );
+
 				$( this ).prev().css({
-					"height": options.readMoreHeight,
+					"height": refElementOptions.collapsedHeight,
 					"overflow": "hidden"
 					});
 			};
