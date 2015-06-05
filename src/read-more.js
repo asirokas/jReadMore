@@ -2,7 +2,7 @@
 
 	$.fn.readMore = function(options) {
 
-		// 0. Options
+		// Options
 		var defaults = {
 			readMoreLinkClass: "read-more__link",
 			readMoreText: "Read more",
@@ -17,7 +17,7 @@
 
 		/** Create the read more link for each element selected.
 		 *
-		 *  @param {$object} element - An array of elements.
+		 *  @param {object} element - An array of elements.
 		 */
 		function addReadMoreElement(element) {
 
@@ -60,23 +60,28 @@
 
 		addReadMoreElement(obj);
 
-		// 4. Action on clicking the read-more link
+		// Action on clicking the read-more link
 		$( "." + options.readMoreLinkClass ).click(function() {
 
-		    // Expand or collapse the "more" text
-			if ( $( this ).prev().css( "overflow" ) == "hidden" ) {
-				$( this ).prev().css({
+			var $target = $( this ).prev();
+
+			var refElementOptions = new getRefElementOptions( $target );
+
+			// Expand or collapse the "more" text
+			if ( $target.css( "overflow" ) == "hidden" ) {
+
+				$target.css({
 					"height": "auto",
 					"overflow": "auto"
 					});
+				$target.addClass( "expanded" )
 			} else {
 
-				var refElementOptions = new getRefElementOptions( ( $( this ).prev() ) );
-
-				$( this ).prev().css({
+				$target.css({
 					"height": refElementOptions.collapsedHeight,
 					"overflow": "hidden"
 					});
+				$target.removeClass( "expanded" )
 			};
 
 		    // Change the "read more" word accordingly
