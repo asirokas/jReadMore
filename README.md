@@ -25,7 +25,7 @@ If you like you can change some of the default options like this:
 </script>
 ```
 ### Options
-* `readMoreLink: "read-more__link"` The text to display for collapsed state
+* `readMoreLinkClass: "read-more__link"` The class for the read more link element
 * `readMoreText: "Read more"` The text to display for collapsed state
 * `readLessText: "Read less"` The text to display for expanded state
 * `readMoreHeight: 75` The height of collapsed state
