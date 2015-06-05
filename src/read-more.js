@@ -24,21 +24,16 @@
 			element.each( function() {
 
 				// Get the options for the specific element
-				var elementHeight = $( this ).data( "options" );
+				var $target = $( this );
 
-                // Set which options to use
-				if ( typeof elementHeight !== "undefined" ) {
-                    var collapsedHeight = elementHeight;
-				} else {
-                    var collapsedHeight = options.readMoreHeight;
-				};
+				var refElementOptions = new getRefElementOptions( $target );
 
 				// Create the read-more link
 				$( this ).after( '<span>' + options.readMoreText +'</span>' )
 						 .next().addClass( options.readMoreLinkClass );
 				// Set the initial state of the read more element to be collapsed
 				$( this ).css({
-					"height": collapsedHeight,
+					"height": refElementOptions.collapsedHeight,
 					"overflow": "hidden"
 					});
 			})
