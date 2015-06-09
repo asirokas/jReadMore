@@ -1,6 +1,8 @@
 # jReadMore
-This is a simple jQuery plugin that provides the read more functionality.
-
+This is a simple jQuery plugin that provides the usual read more functionality.
+## How it works
+It adds an element with a link, just right after the element you want to be collapsed.
+You can click this link to expand or collapse the previous element.
 ## Installation
 Include the plugin in your html page. You need to put the following line in your HTML:
 
@@ -36,15 +38,16 @@ You can modify collapsed height per element, by setting it in the `data-options`
 ```html
 <div class="read-more" data-options="90">
     <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc elit metus, facilisis eu odio et, tempor vehicula augue.
         Sed lacinia at orci ut commodo. Mauris mattis tortor quis eros facilisis ullamcorper. Donec venenatis, nulla ac luctus condimentum, justo enim ullamcorper ligula, quis convallis nunc libero at lorem.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc elit metus, facilisis eu odio et, tempor vehicula augue. Aenean ut diam ultricies, imperdiet metus tincidunt, condimentum ante.
-        Nam lobortis ligula eu placerat egestas. Praesent erat felis, pellentesque et tristique efficitur, euismod a leo. Sed lacinia at orci ut commodo.
-        Mauris mattis tortor quis eros facilisis ullamcorper. Donec venenatis, nulla ac luctus condimentum, justo enim ullamcorper ligula, quis convallis nunc libero at lorem.
+        Nam lobortis ligula eu placerat egestas. Praesent erat felis, pellentesque et tristique efficitur, euismod a leo. Donec venenatis, nulla ac luctus condimentum, justo enim ullamcorper ligula, quis convallis nunc libero at lorem.
     </p>
 </div>
 ```
 
 ## TODO
-- [ ] Use the line-height for calculating the element's collapsed height. The user will have to give the lines to show. This way it will be quicker and more accurate to set it correctly.
+- Use the line-height attribute as the parameter to calculate the element's collapsed height.
 
-- [ ]
+The user will have to give the number of lines to show. Furthermore, if the user provide and some units, then they will be used instead.
+
+(e.g. height: 5, to show five lines or  height: 120px to show 120px)
