@@ -13,7 +13,7 @@
 		// Merge deafults into options
 		var options = $.extend(defaults, options);
 
-		obj = $( this );
+		var obj = $( this );
 
 		/** Create the read more link for each element selected.
 		 *
@@ -29,10 +29,12 @@
 				var refElementOptions = new getRefElementOptions( $target );
 
 				// Create the read-more link
-				$( this ).after( '<span>' + options.readMoreText +'</span>' )
-						 .next().addClass( options.readMoreLinkClass );
+				$( this )
+					.after( "<span>" + options.readMoreText + "</span>" )
+					.next().addClass( options.readMoreLinkClass );
 				// Set the initial state of the read more element to be collapsed
-				$( this ).css({
+				$( this )
+					.css({
 					"height": refElementOptions.collapsedHeight,
 					"overflow": "hidden"
 					});
