@@ -36,7 +36,7 @@
 					"height": refElementOptions.collapsedHeight,
 					"overflow": "hidden"
 					});
-			})
+			});
 		}
 
 		/** Get the options of the selected element.
@@ -69,22 +69,22 @@
 					"height": "auto",
 					"overflow": "auto"
 					});
-				$target.addClass( "expanded" )
+				$target.addClass( "expanded" );
 			} else {
 
 				$target.css({
 					"height": refElementOptions.collapsedHeight,
 					"overflow": "hidden"
 					});
-				$target.removeClass( "expanded" )
-			};
+				$target.removeClass( "expanded" );
+			}
 
-		    // Change the "read more" word accordingly
-		    if ( $( this ).text() == options.readMoreText ) {
+			// Change the "read more" word accordingly
+			if ( $( this ).text() == options.readMoreText ) {
 				$( this ).text( options.readLessText );
-		    } else {
+			} else {
 				$( this ).text( options.readMoreText );
-		    };
+			}
 
 		});
 	};
