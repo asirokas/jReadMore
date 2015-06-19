@@ -11,7 +11,7 @@
 		};
 
 		// Merge deafults into options
-		var options = $.extend(defaults, options);
+		options = $.extend(defaults, options);
 
 		var obj = $( this );
 
