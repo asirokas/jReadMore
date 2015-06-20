@@ -15,6 +15,20 @@
 
 		var obj = $( this );
 
+		/** Get the options of the selected element.
+		*
+		*  @param {object} refElement - An array of elements.
+		*/
+		function getRefElementOptions(refElement) {
+
+			if ( typeof refElement.data( "options" ) !== "undefined" ) {
+				this.collapsedHeight = refElement.data( "options" );
+			} else {
+				this.collapsedHeight = options.readMoreHeight;
+			}
+
+		}
+
 		/** Create the read more link for each element selected.
 		 *
 		 *  @param {object} element - An array of elements.
@@ -41,20 +55,6 @@
 			});
 		}
 
-		/** Get the options of the selected element.
-		*
-		*  @param {object} refElement - An array of elements.
-		*/
-		function getRefElementOptions(refElement) {
-
-			if ( typeof refElement.data( "options" ) !== "undefined" ) {
-				this.collapsedHeight = refElement.data( "options" );
-			} else {
-				this.collapsedHeight = options.readMoreHeight;
-			}
-
-		}
-
 		addReadMoreElement(obj);
 
 		// Action on clicking the read-more link
@@ -65,7 +65,7 @@
 			var refElementOptions = new getRefElementOptions( $target );
 
 			// Expand or collapse the "more" text
-			if ( $target.css( "overflow" ) == "hidden" ) {
+			if ( $target.css( "overflow" ) === "hidden" ) {
 
 				$target.css({
 					"height": "auto",
@@ -82,7 +82,7 @@
 			}
 
 			// Change the "read more" word accordingly
-			if ( $( this ).text() == options.readMoreText ) {
+			if ( $( this ).text() === options.readMoreText ) {
 				$( this ).text( options.readLessText );
 			} else {
 				$( this ).text( options.readMoreText );
