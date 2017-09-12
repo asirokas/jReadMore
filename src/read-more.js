@@ -7,13 +7,47 @@
 			readMoreLinkClass: "read-more__link",
 			readMoreText: "Read more",
 			readLessText: "Read less",
-			readMoreHeight: 150
+            readMoreHeight: 150,
+			readMoreInitClass: "read-more__init"
 		};
 
 		// Merge deafults into options
 		options = $.extend(defaults, options);
 
 		var obj = $( this );
+
+        // Action on clicking the read-more link
+        function clickHandler() {
+
+            var $target = $(this).prev();
+
+            var refElementOptions = new getRefElementOptions($target);
+
+            // Expand or collapse the "more" text
+            if ($target.css("overflow") === "hidden") {
+
+                $target.css({
+                    "height": "auto",
+                    "overflow": "auto"
+                });
+                $target.addClass("expanded");
+            } else {
+
+                $target.css({
+                    "height": refElementOptions.collapsedHeight,
+                    "overflow": "hidden"
+                });
+                $target.removeClass("expanded");
+            }
+
+            // Change the "read more" word accordingly
+            if ($(this).text() === options.readMoreText) {
+                $(this).text(options.readLessText);
+            } else {
+                $(this).text(options.readMoreText);
+            }
+
+        }
 
 		/** Get the options of the selected element.
 		*
@@ -38,57 +72,34 @@
 			element.each( function() {
 
 				// Get the options for the specific element
-				var $target = $( this );
+                var $target = $(this);
+				
+                var refElementOptions = new getRefElementOptions($target);
 
-				var refElementOptions = new getRefElementOptions( $target );
+                // Check if element has already been initialized
+                if ( $target.hasClass( options.readMoreInitClass ) )
+                    return;
 
 				// Create the read-more link
-				$( this )
-					.after( "<span>" + options.readMoreText + "</span>" )
-					.next().addClass( options.readMoreLinkClass );
+                var $linkElem = $target
+                    .after("<span>" + options.readMoreText + "</span>")
+                    .next();
+                $linkElem.addClass(options.readMoreLinkClass);
+                $linkElem.click(clickHandler);
+
 				// Set the initial state of the read more element to be collapsed
-				$( this )
+                $target
 					.css({
 					"height": refElementOptions.collapsedHeight,
 					"overflow": "hidden"
 					});
+				
+				$target.addClass(options.readMoreInitClass);
 			});
 		}
 
 		addReadMoreElement(obj);
-
-		// Action on clicking the read-more link
-		$( "." + options.readMoreLinkClass ).click(function() {
-
-			var $target = $( this ).prev();
-
-			var refElementOptions = new getRefElementOptions( $target );
-
-			// Expand or collapse the "more" text
-			if ( $target.css( "overflow" ) === "hidden" ) {
-
-				$target.css({
-					"height": "auto",
-					"overflow": "auto"
-					});
-				$target.addClass( "expanded" );
-			} else {
-
-				$target.css({
-					"height": refElementOptions.collapsedHeight,
-					"overflow": "hidden"
-					});
-				$target.removeClass( "expanded" );
-			}
-
-			// Change the "read more" word accordingly
-			if ( $( this ).text() === options.readMoreText ) {
-				$( this ).text( options.readLessText );
-			} else {
-				$( this ).text( options.readMoreText );
-			}
-
-		});
+		
 	};
 
 })(jQuery);
