@@ -86,7 +86,6 @@
                     .next();
                 $linkElem.addClass(options.readMoreLinkClass);
                 $linkElem.click(clickHandler);
-                $linkElem.addClass(refElementOptions.readMoreInitClass);
 
 				// Set the initial state of the read more element to be collapsed
                 $target
@@ -94,6 +93,8 @@
 					"height": refElementOptions.collapsedHeight,
 					"overflow": "hidden"
 					});
+				
+				$target.addClass(refElementOptions.readMoreInitClass);
 			});
 		}
 
