@@ -8,7 +8,7 @@
 			readMoreText: "Read more",
 			readLessText: "Read less",
             readMoreHeight: 150,
-			readMoreInitClass: "read-more__init",
+			readMoreInitClass: "read-more__init"
 		};
 
 		// Merge deafults into options
