@@ -77,7 +77,7 @@
                 var refElementOptions = new getRefElementOptions($target);
 
                 // Check if element has already been initialized
-                if ( $target.hasClass( refElementOptions.readMoreInitClass ) )
+                if ( $target.hasClass( options.readMoreInitClass ) )
                     return;
 
 				// Create the read-more link
@@ -94,7 +94,7 @@
 					"overflow": "hidden"
 					});
 				
-				$target.addClass(refElementOptions.readMoreInitClass);
+				$target.addClass(options.readMoreInitClass);
 			});
 		}
 
